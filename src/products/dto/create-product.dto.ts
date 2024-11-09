@@ -9,8 +9,8 @@ export class CreateProductDto {
   @IsNumber({
     maxDecimalPlaces: 4,
   })
-  @Min(0)
   // @IsPositive() -> de 1 hacia arriba
+  @Min(0)
   @Type(() => Number) /// -> Transforma a número lo que se envía y si no lo puede hacer lanza un error
   price: number;
 

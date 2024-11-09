@@ -4,6 +4,7 @@ import * as joi from 'joi';
 
 interface EnvVars {
   PORT: number;
+  DATABASE_URL: string;
   // NODE_ENV: string;
   // MONGO_URI: string;
 }
@@ -11,7 +12,8 @@ interface EnvVars {
 // Joi es un validador de squema que hace que si el puerto no viene, lance una excepción y no levante el proyecto
 const envsSchema = joi
   .object({
-    PORT: joi.number()
+    PORT: joi.number(),
+    DATABASE_URL: joi.string().required(),
       // .required(),
     // NODE_ENV: joi.string().valid('development', 'production', 'test').default('development'),
     // MONGO_URI: joi.string().required(),
@@ -29,5 +31,6 @@ if (error) {
 export const envVars: EnvVars = value; // Es una forma para validar el tipado del value del schema.
 
 export const envs = {
-  port: envVars.PORT
+  port: envVars.PORT,
+  databaseUrl: envVars.DATABASE_URL,
 }
